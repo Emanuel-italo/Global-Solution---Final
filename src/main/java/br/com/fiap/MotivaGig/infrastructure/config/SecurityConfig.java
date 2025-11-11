@@ -11,7 +11,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 public class SecurityConfig {
 
 
-    @ConfigProperty(name = "saudetodos.api.key")
+    @ConfigProperty(name = "motivagig.api.key")
     String chaveSecretaConfigurada;
 
 

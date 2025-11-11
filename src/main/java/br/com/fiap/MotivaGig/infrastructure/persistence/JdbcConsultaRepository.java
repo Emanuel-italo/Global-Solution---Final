@@ -2,9 +2,9 @@ package br.com.fiap.motivagig.infrastructure.persistence;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Consulta;
+import br.com.fiap.motivagig.domain.model.Missao;
 import br.com.fiap.motivagig.domain.model.Medico;
-import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.model.Trabalhador;
 import br.com.fiap.motivagig.domain.repository.ConsultaRepository;
 import br.com.fiap.motivagig.domain.repository.PacienteRepository; 
 
@@ -29,7 +29,7 @@ public class JdbcConsultaRepository implements ConsultaRepository {
     }
 
 
-    private Consulta mapearResultSetParaConsulta(ResultSet rs) throws SQLException, EntidadeNaoLocalizada {
+    private Missao mapearResultSetParaConsulta(ResultSet rs) throws SQLException, EntidadeNaoLocalizada {
         int consultaId      = rs.getInt("id");
         LocalDate data      = rs.getDate("data_consulta").toLocalDate();
         Timestamp tsHora    = rs.getTimestamp("hora_consulta"); 
@@ -40,21 +40,21 @@ public class JdbcConsultaRepository implements ConsultaRepository {
         boolean ativo       = rs.getInt("ativo") == 1;
 
 
-        Paciente paciente = pacienteRepository.buscarPorId(pacienteId);
+        Trabalhador paciente = pacienteRepository.buscarPorId(pacienteId);
 
 
         Medico medico = new Medico(medicoId, "Médico " + medicoId, "", "CRM" + medicoId, "Especialidade");
 
 
 
-        Consulta consulta = new Consulta(consultaId, data, hora, status, paciente, medico);
+        Missao consulta = new Missao(consultaId, data, hora, status, paciente, medico);
         consulta.setAtivo(ativo);
         return consulta;
     }
 
 
     @Override
-    public Consulta salvar(Consulta consulta) {
+    public Missao salvar(Missao consulta) {
         
         String sql = "INSERT INTO CONSULTA "
                 + "(data_consulta, hora_consulta, status, paciente_id, medico_id, ativo, created_at, last_update) "
@@ -106,7 +106,7 @@ public class JdbcConsultaRepository implements ConsultaRepository {
     }
 
     @Override
-    public Consulta buscarPorId(int id) throws EntidadeNaoLocalizada {
+    public Missao buscarPorId(int id) throws EntidadeNaoLocalizada {
         
         String sql = "SELECT id, data_consulta, hora_consulta, status, paciente_id, medico_id, ativo "
                 + "FROM CONSULTA WHERE id = ? AND ativo = 1";
@@ -144,10 +144,10 @@ public class JdbcConsultaRepository implements ConsultaRepository {
     }
 
     @Override
-    public List<Consulta> buscarTodos() {
+    public List<Missao> buscarTodos() {
         String sql = "SELECT id, data_consulta, hora_consulta, status, paciente_id, medico_id, ativo "
                 + "FROM CONSULTA WHERE ativo = 1 ORDER BY data_consulta, hora_consulta";
-        List<Consulta> lista = new ArrayList<>();
+        List<Missao> lista = new ArrayList<>();
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -180,10 +180,10 @@ public class JdbcConsultaRepository implements ConsultaRepository {
     }
 
     @Override
-    public List<Consulta> buscarPorPacienteId(int pacienteId) {
+    public List<Missao> buscarPorPacienteId(int pacienteId) {
         String sql = "SELECT id, data_consulta, hora_consulta, status, paciente_id, medico_id, ativo "
                 + "FROM CONSULTA WHERE paciente_id = ? AND ativo = 1 ORDER BY data_consulta, hora_consulta";
-        List<Consulta> lista = new ArrayList<>();
+        List<Missao> lista = new ArrayList<>();
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -218,7 +218,7 @@ public class JdbcConsultaRepository implements ConsultaRepository {
 
 
     @Override
-    public boolean editar(Consulta consulta) {
+    public boolean editar(Missao consulta) {
 
         String sql = "UPDATE CONSULTA SET data_consulta = ?, hora_consulta = ?, status = ?, last_update = ? "
                 + "WHERE id = ? AND ativo = 1";

@@ -2,19 +2,19 @@ package br.com.fiap.motivagig.domain.repository;
 
 import java.util.List;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Consulta;
+import br.com.fiap.motivagig.domain.model.Missao;
 
 public interface ConsultaRepository {
 
-    Consulta salvar(Consulta consulta);
+    Missao salvar(Missao consulta);
 
-    Consulta buscarPorId(int id) throws EntidadeNaoLocalizada;
+    Missao buscarPorId(int id) throws EntidadeNaoLocalizada;
 
-    List<Consulta> buscarTodos();
+    List<Missao> buscarTodos();
 
-    List<Consulta> buscarPorPacienteId(int pacienteId);
+    List<Missao> buscarPorPacienteId(int pacienteId);
 
-    boolean editar(Consulta consulta);
+    boolean editar(Missao consulta);
 
     boolean cancelar(int id);
 }

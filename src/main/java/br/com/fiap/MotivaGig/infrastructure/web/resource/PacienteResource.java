@@ -1,7 +1,7 @@
 package br.com.fiap.motivagig.infrastructure.web.resource;
 
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.model.Trabalhador;
 import br.com.fiap.motivagig.domain.repository.PacienteRepository;
 
 import jakarta.inject.Inject;
@@ -21,7 +21,7 @@ public class PacienteResource {
     PacienteRepository pacienteRepository;
 
     @POST
-    public Response criarPaciente(Paciente paciente) {
+    public Response criarPaciente(Trabalhador paciente) {
 
         System.out.println("Recebido POST /api/pacientes com dados: " + paciente);
 
@@ -50,7 +50,7 @@ public class PacienteResource {
             System.out.println("CPF " + paciente.getCpf() + " disponível. Tentando salvar...");
 
 
-            Paciente pacienteSalvo = pacienteRepository.salvar(paciente);
+            Trabalhador pacienteSalvo = pacienteRepository.salvar(paciente);
 
             if (pacienteSalvo != null && pacienteSalvo.getId() > 0) {
                 System.out.println("Paciente criado com sucesso! ID: " + pacienteSalvo.getId());
@@ -75,7 +75,7 @@ public class PacienteResource {
     public Response listarPacientes() {
         System.out.println("Recebido GET /api/pacientes"); 
         try {
-            List<Paciente> pacientes = pacienteRepository.buscarTodos();
+            List<Trabalhador> pacientes = pacienteRepository.buscarTodos();
             System.out.println("Encontrados " + pacientes.size() + " pacientes.");
             return Response.ok(pacientes).build();
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class PacienteResource {
     public Response buscarPacientePorId(@PathParam("id") int id) {
         System.out.println("Recebido GET /api/pacientes/" + id); 
         try {
-            Paciente paciente = pacienteRepository.buscarPorId(id);
+            Trabalhador paciente = pacienteRepository.buscarPorId(id);
             System.out.println("Paciente encontrado: " + paciente.getNome());
             return Response.ok(paciente).build();
         } catch (EntidadeNaoLocalizada e) {
@@ -114,7 +114,7 @@ public class PacienteResource {
     public Response buscarPacientePorCpf(@PathParam("cpf") String cpf) {
         System.out.println("Recebido GET /api/pacientes/cpf/" + cpf); 
         try {
-            Paciente paciente = pacienteRepository.buscarPorCpf(cpf);
+            Trabalhador paciente = pacienteRepository.buscarPorCpf(cpf);
             System.out.println("Paciente encontrado pelo CPF: " + paciente.getNome());
             return Response.ok(paciente).build();
         } catch (EntidadeNaoLocalizada e) {
@@ -133,7 +133,7 @@ public class PacienteResource {
 
     @PUT
     @Path("/{id}")
-    public Response atualizarPaciente(@PathParam("id") int id, Paciente paciente) {
+    public Response atualizarPaciente(@PathParam("id") int id, Trabalhador paciente) {
         System.out.println("Recebido PUT /api/pacientes/" + id); 
         if (paciente == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity(Map.of("erro", "Corpo da requisição vazio.")).build();
@@ -147,7 +147,7 @@ public class PacienteResource {
             boolean sucesso = pacienteRepository.editar(paciente);
             if (sucesso) {
                 System.out.println("Paciente ID " + id + " atualizado.");
-                Paciente pacienteAtualizado = pacienteRepository.buscarPorId(id);
+                Trabalhador pacienteAtualizado = pacienteRepository.buscarPorId(id);
                 return Response.ok(pacienteAtualizado).build();
             } else {
                 System.err.println("Falha no update (paciente ID " + id + "), verificando se ainda existe...");

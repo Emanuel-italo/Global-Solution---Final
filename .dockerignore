@@ -1,0 +1,15 @@
+# Ignorar pasta de build (será criada no container)
+target/
+
+# Ignorar arquivos do Git
+.git
+.gitignore
+
+# Ignorar arquivos de IDE
+.idea/
+*.iml
+.vscode/
+
+# Ignorar logs e arquivos de ambiente
+*.log
+.env

@@ -1,9 +1,9 @@
 package br.com.fiap.motivagig.infrastructure.web.resource;
 
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Consulta;
+import br.com.fiap.motivagig.domain.model.Missao;
 import br.com.fiap.motivagig.domain.model.Medico; 
-import br.com.fiap.motivagig.domain.model.Paciente; 
+import br.com.fiap.motivagig.domain.model.Trabalhador; 
 import br.com.fiap.motivagig.domain.repository.ConsultaRepository;
 import br.com.fiap.motivagig.domain.repository.PacienteRepository; 
 
@@ -39,7 +39,7 @@ public class ConsultaResource {
                     .build();
         }
 
-        Paciente paciente;
+        Trabalhador paciente;
         Medico medico;
 
         try {
@@ -65,7 +65,7 @@ public class ConsultaResource {
         }
 
 
-        Consulta novaConsulta = new Consulta();
+        Missao novaConsulta = new Missao();
         try {
             novaConsulta.setPaciente(paciente);
             novaConsulta.setMedico(medico);
@@ -81,7 +81,7 @@ public class ConsultaResource {
         }
 
 
-        Consulta consultaSalva = consultaRepository.salvar(novaConsulta);
+        Missao consultaSalva = consultaRepository.salvar(novaConsulta);
 
         if (consultaSalva != null) {
             return Response.status(Response.Status.CREATED).entity(consultaSalva).build();
@@ -96,7 +96,7 @@ public class ConsultaResource {
     @Path("/{id}")
     public Response buscarConsultaPorId(@PathParam("id") int id) {
         try {
-            Consulta consulta = consultaRepository.buscarPorId(id);
+            Missao consulta = consultaRepository.buscarPorId(id);
             return Response.ok(consulta).build();
         } catch (EntidadeNaoLocalizada e) {
             return Response.status(Response.Status.NOT_FOUND)
@@ -114,7 +114,7 @@ public class ConsultaResource {
     @GET
     public Response listarConsultas(@QueryParam("pacienteId") Integer pacienteId) {
         try {
-            List<Consulta> consultas;
+            List<Missao> consultas;
             if (pacienteId != null) {
                 consultas = consultaRepository.buscarPorPacienteId(pacienteId);
             } else {
@@ -143,7 +143,7 @@ public class ConsultaResource {
 
         try {
 
-            Consulta consultaExistente = consultaRepository.buscarPorId(id);
+            Missao consultaExistente = consultaRepository.buscarPorId(id);
 
 
             boolean modificado = false;
@@ -170,7 +170,7 @@ public class ConsultaResource {
             boolean sucesso = consultaRepository.editar(consultaExistente);
             if (sucesso) {
 
-                Consulta consultaAtualizada = consultaRepository.buscarPorId(id);
+                Missao consultaAtualizada = consultaRepository.buscarPorId(id);
                 return Response.ok(consultaAtualizada).build();
             } else {
 
@@ -197,7 +197,7 @@ public class ConsultaResource {
     public Response cancelarConsulta(@PathParam("id") int id) {
         try {
 
-            Consulta consulta = consultaRepository.buscarPorId(id);
+            Missao consulta = consultaRepository.buscarPorId(id);
 
 
             if (!"AGENDADA".equals(consulta.getStatus()) && !"CONFIRMADA".equals(consulta.getStatus())) {

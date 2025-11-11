@@ -2,19 +2,19 @@ package br.com.fiap.motivagig.domain.repository;
 
 import java.util.List;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.model.Trabalhador;
 
 public interface PacienteRepository {
 
-    Paciente salvar(Paciente paciente);
+    Trabalhador salvar(Trabalhador paciente);
 
-    Paciente buscarPorId(int id) throws EntidadeNaoLocalizada;
+    Trabalhador buscarPorId(int id) throws EntidadeNaoLocalizada;
 
-    Paciente buscarPorCpf(String cpf) throws EntidadeNaoLocalizada;
+    Trabalhador buscarPorCpf(String cpf) throws EntidadeNaoLocalizada;
 
-    List<Paciente> buscarTodos();
+    List<Trabalhador> buscarTodos();
 
-    boolean editar(Paciente paciente);
+    boolean editar(Trabalhador paciente);
 
     boolean desativar(int id);
 

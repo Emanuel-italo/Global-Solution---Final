@@ -1,7 +1,7 @@
 package br.com.fiap.motivagig.domain.service;
 
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.model.Trabalhador;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,15 +9,15 @@ import java.util.List;
 
 public interface PacienteService {
 
-    Paciente criar(Paciente paciente);
+    Trabalhador criar(Trabalhador paciente);
 
-    Paciente atualizar(Paciente paciente)
+    Trabalhador atualizar(Trabalhador paciente)
             throws EntidadeNaoLocalizada;
 
-    Paciente buscarPorId(Long id)
+    Trabalhador buscarPorId(Long id)
             throws EntidadeNaoLocalizada;
 
-    List<Paciente> buscarTodos();
+    List<Trabalhador> buscarTodos();
 
     void desativar(Long id, Long version)
             throws EntidadeNaoLocalizada;
@@ -25,7 +25,7 @@ public interface PacienteService {
     void reativar(Long id, Long version)
             throws EntidadeNaoLocalizada;
 
-    List<Paciente> buscarPorCpf(String cpf);
+    List<Trabalhador> buscarPorCpf(String cpf);
 
     boolean isIdoso(Long id)
             throws EntidadeNaoLocalizada;

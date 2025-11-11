@@ -2,7 +2,7 @@ package br.com.fiap.motivagig.infrastructure.persistence;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.model.Trabalhador;
 import br.com.fiap.motivagig.domain.repository.PacienteRepository;
 
 import java.sql.*;
@@ -20,8 +20,8 @@ public class JdbcPacienteRepository implements PacienteRepository {
     }
 
 
-    private Paciente mapearResultSetParaPaciente(ResultSet rs) throws SQLException {
-        return new Paciente(
+    private Trabalhador mapearResultSetParaPaciente(ResultSet rs) throws SQLException {
+        return new Trabalhador(
                 rs.getInt("id"),
                 rs.getString("nome"),
                 rs.getInt("idade"),
@@ -36,7 +36,7 @@ public class JdbcPacienteRepository implements PacienteRepository {
 
 
     @Override
-    public Paciente salvar(Paciente paciente) {
+    public Trabalhador salvar(Trabalhador paciente) {
 
         String sql = "INSERT INTO PACIENTE "
                 + "(nome, idade, tipo_deficiencia, telefone, cpf, email, ativo, created_at, last_update) "
@@ -93,7 +93,7 @@ public class JdbcPacienteRepository implements PacienteRepository {
     }
 
     @Override
-    public Paciente buscarPorId(int id) throws EntidadeNaoLocalizada {
+    public Trabalhador buscarPorId(int id) throws EntidadeNaoLocalizada {
 
         String sql = "SELECT id, nome, idade, tipo_deficiencia, telefone, cpf, email, ativo "
                 + "FROM PACIENTE WHERE id = ? AND ativo = 1";
@@ -128,7 +128,7 @@ public class JdbcPacienteRepository implements PacienteRepository {
     }
 
     @Override
-    public Paciente buscarPorCpf(String cpf) throws EntidadeNaoLocalizada {
+    public Trabalhador buscarPorCpf(String cpf) throws EntidadeNaoLocalizada {
 
         String sql = "SELECT id, nome, idade, tipo_deficiencia, telefone, cpf, email, ativo "
                 + "FROM PACIENTE WHERE cpf = ? AND ativo = 1";
@@ -163,10 +163,10 @@ public class JdbcPacienteRepository implements PacienteRepository {
 
 
     @Override
-    public List<Paciente> buscarTodos() {
+    public List<Trabalhador> buscarTodos() {
         String sql = "SELECT id, nome, idade, tipo_deficiencia, telefone, cpf, email, ativo "
                 + "FROM PACIENTE WHERE ativo = 1 ORDER BY nome";
-        List<Paciente> lista = new ArrayList<>();
+        List<Trabalhador> lista = new ArrayList<>();
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -194,7 +194,7 @@ public class JdbcPacienteRepository implements PacienteRepository {
     }
 
     @Override
-    public boolean editar(Paciente paciente) {
+    public boolean editar(Trabalhador paciente) {
 
         String sql = "UPDATE PACIENTE SET nome = ?, idade = ?, tipo_deficiencia = ?, "
                 + "telefone = ?, email = ?, last_update = ? "
