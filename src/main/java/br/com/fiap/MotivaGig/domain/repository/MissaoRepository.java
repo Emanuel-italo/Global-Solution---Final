@@ -4,17 +4,18 @@ import java.util.List;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
 import br.com.fiap.motivagig.domain.model.Missao;
 
-public interface ConsultaRepository {
 
-    Missao salvar(Missao consulta);
+public interface MissaoRepository {
+
+   
+    Missao salvar(Missao missao);
 
     Missao buscarPorId(int id) throws EntidadeNaoLocalizada;
 
     List<Missao> buscarTodos();
 
-    List<Missao> buscarPorPacienteId(int pacienteId);
+    boolean editar(Missao missao);
 
-    boolean editar(Missao consulta);
-
-    boolean cancelar(int id);
+   
+    boolean desativar(int id);
 }
