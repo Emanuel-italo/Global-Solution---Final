@@ -1,7 +1,7 @@
-package br.com.fiap.saudetodos.domain.service;
+package br.com.fiap.MotivaGig.domain.exceptions;
 
-import br.com.fiap.saudetodos.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.saudetodos.domain.model.Paciente;
+import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.MotivaGig.domain.model.Paciente;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

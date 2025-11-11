@@ -1,12 +1,12 @@
-package br.com.fiap.saudetodos.infrastructure.persistence;
+package br.com.fiap.MotivaGig.infrastructure.persistence;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import br.com.fiap.saudetodos.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.saudetodos.domain.model.Consulta;
-import br.com.fiap.saudetodos.domain.model.Medico;
-import br.com.fiap.saudetodos.domain.model.Paciente;
-import br.com.fiap.saudetodos.domain.repository.ConsultaRepository;
-import br.com.fiap.saudetodos.domain.repository.PacienteRepository; 
+import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.MotivaGiG.domain.model.Consulta;
+import br.com.fiap.MotivaGiG.domain.model.Medico;
+import br.com.fiap.MotivaGiG.domain.model.Paciente;
+import br.com.fiap.MotivaGiG.domain.repository.ConsultaRepository;
+import br.com.fiap.MotivaGiG.domain.repository.PacienteRepository; 
 
 import java.sql.*;
 import java.time.LocalDate;

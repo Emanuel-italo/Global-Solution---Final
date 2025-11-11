@@ -1,4 +1,4 @@
-package br.com.fiap.saudetodos.domain.model;
+package br.com.fiap.MotivaGig.domain.exceptions;
 
 public class Medico extends Pessoa {
     private String crm;

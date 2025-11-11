@@ -1,4 +1,4 @@
-package br.com.fiap.saudetodos.domain.exceptions;
+package br.com.fiap.MotivaGig.domain.exceptions;
 
 public class ValidacaoDominioException extends RuntimeException {
 

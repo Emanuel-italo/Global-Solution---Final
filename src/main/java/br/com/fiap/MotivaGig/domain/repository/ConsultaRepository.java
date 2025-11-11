@@ -1,8 +1,8 @@
-package br.com.fiap.saudetodos.domain.repository;
+package br.com.fiap.MotivaGig.domain.exceptions;
 
 import java.util.List;
-import br.com.fiap.saudetodos.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.saudetodos.domain.model.Consulta;
+import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.MotivaGig.domain.model.Consulta;
 
 public interface ConsultaRepository {
 

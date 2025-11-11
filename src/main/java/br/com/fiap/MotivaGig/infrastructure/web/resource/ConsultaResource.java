@@ -1,12 +1,12 @@
-package br.com.fiap.saudetodos.infrastructure.web.resource;
+package br.com.fiap.MotivaGig.infrastructure.web.resource;
 
-import br.com.fiap.saudetodos.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.saudetodos.domain.model.Consulta;
-import br.com.fiap.saudetodos.domain.model.Medico; // Para criar objeto
-import br.com.fiap.saudetodos.domain.model.Paciente; // Para criar objeto
-import br.com.fiap.saudetodos.domain.repository.ConsultaRepository;
-import br.com.fiap.saudetodos.domain.repository.PacienteRepository; // Para validar paciente
-// Importar MedicoRepository se/quando existir
+import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.MotivaGig.domain.model.Consulta;
+import br.com.fiap.MotivaGig.domain.model.Medico; 
+import br.com.fiap.MotivaGig.domain.model.Paciente; 
+import br.com.fiap.MotivaGig.domain.repository.ConsultaRepository;
+import br.com.fiap.MotivaGig.domain.repository.PacienteRepository; 
+
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -26,7 +26,7 @@ public class ConsultaResource {
     @Inject
     PacienteRepository pacienteRepository;
 
-    // @Inject MedicoRepository medicoRepository;
+ 
 
     @POST
     public Response agendarConsulta(ConsultaInput input) {
@@ -207,7 +207,7 @@ public class ConsultaResource {
 
             boolean sucesso = consultaRepository.cancelar(id);
             if (sucesso) {
-                return Response.noContent().build(); // 204 Sucesso
+                return Response.noContent().build(); 
             } else {
 
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(Map.of("erro",

@@ -1,4 +1,4 @@
-package br.com.fiap.saudetodos.domain.service;
+package br.com.fiap.MotivaGig.domain.exceptions;
 
 
 public interface ApiKeyValidator {

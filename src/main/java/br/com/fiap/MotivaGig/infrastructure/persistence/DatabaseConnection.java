@@ -1,4 +1,4 @@
-package br.com.fiap.saudetodos.infrastructure.persistence;
+package br.com.fiap.MotivaGig.infrastructure.persistence;
 
 import java.sql.Connection;
 import java.sql.SQLException;
