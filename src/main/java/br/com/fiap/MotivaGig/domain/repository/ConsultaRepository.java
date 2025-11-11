@@ -1,4 +1,4 @@
-package br.com.fiap.motivagig.model.repository;
+package br.com.fiap.motivagig.domain.repository;
 
 import java.util.List;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;

@@ -1,4 +1,4 @@
-package br.com.fiap.motivagig.domain.exceptions;
+package br.com.fiap.motivagig.domain.service;
 
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
 import br.com.fiap.motivagig.domain.model.Paciente;
