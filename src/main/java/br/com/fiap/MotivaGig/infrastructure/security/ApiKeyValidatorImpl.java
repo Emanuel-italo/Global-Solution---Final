@@ -1,7 +1,7 @@
-package br.com.fiap.MotivaGig.infrastructure.security;
+package br.com.fiap.motivagig.infrastructure.security;
 
 
-import br.com.fiap.MotivaGig.domain.service.ApiKeyValidator;
+import br.com.fiap.motivagig.domain.service.ApiKeyValidator;
 
 
 public class ApiKeyValidatorImpl implements ApiKeyValidator {

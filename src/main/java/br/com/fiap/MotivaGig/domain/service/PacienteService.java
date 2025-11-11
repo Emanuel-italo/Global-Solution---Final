@@ -1,7 +1,7 @@
-package br.com.fiap.MotivaGig.domain.exceptions;
+package br.com.fiap.motivagig.domain.exceptions;
 
-import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.MotivaGig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.motivagig.domain.model.Paciente;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

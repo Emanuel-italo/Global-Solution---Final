@@ -1,5 +1,5 @@
-package br.com.fiap.MotivaGig.infrastructure.security;
-import br.com.fiap.MotivaGig.domain.service.ApiKeyValidator;
+package br.com.fiap.motivagig.infrastructure.security;
+import br.com.fiap.motivagig.domain.service.ApiKeyValidator;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;

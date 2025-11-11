@@ -1,8 +1,8 @@
-package br.com.fiap.MotivaGig.infrastructure.web.resource;
+package br.com.fiap.motivagig.infrastructure.web.resource;
 
-import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.MotivaGig.domain.model.Paciente;
-import br.com.fiap.MotivaGig.domain.repository.PacienteRepository;
+import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.repository.PacienteRepository;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

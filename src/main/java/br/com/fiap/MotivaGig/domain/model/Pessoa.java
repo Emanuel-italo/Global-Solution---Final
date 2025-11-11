@@ -1,4 +1,4 @@
-package br.com.fiap.MotivaGig.domain.exceptions;
+package br.com.fiap.motivagig.domain.exceptions;
 
 
 public abstract class Pessoa {

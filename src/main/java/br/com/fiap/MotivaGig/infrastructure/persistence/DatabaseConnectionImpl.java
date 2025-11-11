@@ -1,4 +1,4 @@
-package br.com.fiap.MotivaGig.infrastructure.persistence;
+package br.com.fiap.motivagig.infrastructure.persistence;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

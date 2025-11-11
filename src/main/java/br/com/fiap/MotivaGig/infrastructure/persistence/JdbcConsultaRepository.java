@@ -1,12 +1,12 @@
-package br.com.fiap.MotivaGig.infrastructure.persistence;
+package br.com.fiap.motivagig.infrastructure.persistence;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.MotivaGiG.domain.model.Consulta;
-import br.com.fiap.MotivaGiG.domain.model.Medico;
-import br.com.fiap.MotivaGiG.domain.model.Paciente;
-import br.com.fiap.MotivaGiG.domain.repository.ConsultaRepository;
-import br.com.fiap.MotivaGiG.domain.repository.PacienteRepository; 
+import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.motivagig.domain.model.Consulta;
+import br.com.fiap.motivagig.domain.model.Medico;
+import br.com.fiap.motivagig.domain.model.Paciente;
+import br.com.fiap.motivagig.domain.repository.ConsultaRepository;
+import br.com.fiap.motivagig.domain.repository.PacienteRepository; 
 
 import java.sql.*;
 import java.time.LocalDate;

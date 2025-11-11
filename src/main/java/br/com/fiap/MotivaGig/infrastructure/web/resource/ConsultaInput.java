@@ -1,4 +1,4 @@
-package br.com.fiap.MotivaGig.infrastructure.web.resource;
+package br.com.fiap.motivagig.infrastructure.web.resource;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

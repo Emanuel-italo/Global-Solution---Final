@@ -1,4 +1,4 @@
-package br.com.fiap.MotivaGig.infrastructure.exceptions;
+package br.com.fiap.motivagig.infrastructure.exceptions;
 
 public class InfraestruturaException extends  RuntimeException {
 

@@ -1,10 +1,10 @@
-package br.com.fiap.saudetodos.infrastructure.config;
+package br.com.fiap.motivagig.infrastructure.config;
 
 import io.agroal.api.AgroalDataSource;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
-import br.com.fiap.saudetodos.infrastructure.persistence.DatabaseConnection;
-import br.com.fiap.saudetodos.infrastructure.persistence.DatabaseConnectionImpl;
+import br.com.fiap.motivagig.infrastructure.persistence.DatabaseConnection;
+import br.com.fiap.motivagig.infrastructure.persistence.DatabaseConnectionImpl;
 
 @ApplicationScoped
 public class PersistenceConfig {

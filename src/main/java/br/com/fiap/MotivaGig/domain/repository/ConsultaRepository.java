@@ -1,8 +1,8 @@
-package br.com.fiap.MotivaGig.domain.exceptions;
+package br.com.fiap.motivagig.domain.exceptions;
 
 import java.util.List;
-import br.com.fiap.MotivaGig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.MotivaGig.domain.model.Consulta;
+import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.motivagig.domain.model.Consulta;
 
 public interface ConsultaRepository {
 
