@@ -4,7 +4,7 @@ import java.util.List;
 import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
 import br.com.fiap.motivagig.domain.model.Trabalhador;
 
-public interface PacienteRepository {
+public interface TrabalhadorRepository {
 
     Trabalhador salvar(Trabalhador paciente);
 
