@@ -1,4 +1,4 @@
-package br.com.fiap.motivagig.domain.exceptions;
+package br.com.fiap.motivagig.domain.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
