@@ -1,32 +1,41 @@
 package br.com.fiap.motivagig.infrastructure.web.resource;
 
-import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
-import br.com.fiap.motivagig.domain.model.Trabalhador;
-
-import br.com.fiap.motivagig.domain.repository.TrabalhadorRepository; 
-
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
+
+import br.com.fiap.motivagig.domain.exceptions.EntidadeNaoLocalizada;
+import br.com.fiap.motivagig.domain.model.Trabalhador;
+import br.com.fiap.motivagig.domain.repository.TrabalhadorRepository;
+import br.com.fiap.motivagig.infrastructure.persistence.JdbcTrabalhadorRepository;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 
 @Path("/api/trabalhadores") 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-
 public class TrabalhadorResource {
 
-   
+    
     @Inject
     TrabalhadorRepository trabalhadorRepository; 
 
-    @POST
-   
-    public Response criarTrabalhador(Trabalhador trabalhador) { 
+  
+    @Inject
+    JdbcTrabalhadorRepository jdbcTrabalhadorRepository;
 
+    @POST
+    public Response criarTrabalhador(Trabalhador trabalhador) { 
+        
         System.out.println("Recebido POST /api/trabalhadores com dados: " + trabalhador);
 
         if (trabalhador == null || trabalhador.getNome() == null || trabalhador.getNome().trim().isEmpty() ||
@@ -40,7 +49,7 @@ public class TrabalhadorResource {
         }
 
         try {
-           
+            
             trabalhadorRepository.buscarPorCpf(trabalhador.getCpf()); 
 
             System.err.println("Erro: CPF " + trabalhador.getCpf() + " já cadastrado.");
@@ -49,7 +58,7 @@ public class TrabalhadorResource {
                     .build();
 
         } catch (EntidadeNaoLocalizada e) {
-           
+            
             System.out.println("CPF " + trabalhador.getCpf() + " disponível. Tentando salvar...");
 
             
@@ -73,9 +82,57 @@ public class TrabalhadorResource {
         }
     }
 
+   
+    @POST
+    @Path("/login")
+    public Response login(LoginInput loginInput) {
+        System.out.println("Recebido POST /api/trabalhadores/login com CPF: " + loginInput.getCpf());
+
+        if (loginInput.getCpf() == null || loginInput.getSenha() == null || 
+            loginInput.getCpf().isEmpty() || loginInput.getSenha().isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("erro", "CPF e Senha são obrigatórios."))
+                    .build();
+        }
+
+        try {
+            
+            Trabalhador trabalhador = jdbcTrabalhadorRepository.buscarPorCpfParaLogin(loginInput.getCpf());
+
+            
+            if (trabalhador.getSenha().equals(loginInput.getSenha())) {
+                System.out.println("Login com sucesso para: " + trabalhador.getNome());
+                
+               
+                trabalhador.setSenha(null); 
+
+                return Response.ok(trabalhador).build();
+            } else {
+                System.err.println("Senha inválida para o CPF: " + loginInput.getCpf());
+                return Response.status(Response.Status.UNAUTHORIZED)
+                        .entity(Map.of("erro", "CPF ou Senha inválidos."))
+                        .build();
+            }
+
+        } catch (EntidadeNaoLocalizada e) {
+            System.err.println("Erro: " + e.getMessage());
+          
+            return Response.status(Response.Status.UNAUTHORIZED) 
+                    .entity(Map.of("erro", "CPF ou Senha inválidos."))
+                    .build();
+        } catch (Exception e) {
+            System.err.println("Erro inesperado no login: " + e.getMessage());
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(Map.of("erro", "Erro interno no login."))
+                    .build();
+        }
+    }
+
+
     @GET
-  
     public Response listarTrabalhadores() { 
+        
         System.out.println("Recebido GET /api/trabalhadores"); 
         try {
             List<Trabalhador> trabalhadores = trabalhadorRepository.buscarTodos(); 
@@ -92,8 +149,8 @@ public class TrabalhadorResource {
 
     @GET
     @Path("/{id}")
-  
     public Response buscarTrabalhadorPorId(@PathParam("id") int id) { 
+     
         System.out.println("Recebido GET /api/trabalhadores/" + id); 
         try {
             Trabalhador trabalhador = trabalhadorRepository.buscarPorId(id);
@@ -115,8 +172,8 @@ public class TrabalhadorResource {
 
     @GET
     @Path("/cpf/{cpf}")
-
     public Response buscarTrabalhadorPorCpf(@PathParam("cpf") String cpf) { 
+       
         System.out.println("Recebido GET /api/trabalhadores/cpf/" + cpf); 
         try {
             Trabalhador trabalhador = trabalhadorRepository.buscarPorCpf(cpf);
@@ -138,8 +195,8 @@ public class TrabalhadorResource {
 
     @PUT
     @Path("/{id}")
-   
     public Response atualizarTrabalhador(@PathParam("id") int id, Trabalhador trabalhador) { 
+        
         System.out.println("Recebido PUT /api/trabalhadores/" + id); 
         if (trabalhador == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity(Map.of("erro", "Corpo da requisição vazio.")).build();
@@ -179,6 +236,7 @@ public class TrabalhadorResource {
     @DELETE
     @Path("/{id}")
     public Response desativarTrabalhador(@PathParam("id") int id) { 
+       
         System.out.println("Recebido DELETE /api/trabalhadores/" + id); 
         try {
             boolean sucesso = trabalhadorRepository.desativar(id);
